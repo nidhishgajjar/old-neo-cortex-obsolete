@@ -1,48 +1,45 @@
+import json
+
 class Gmail:
-    def __init__(self):
-        self.action = None
-        self.info_required = None
 
-    def __getattr__(self, name):
-        if name in ["create_email", "read_email", "send_email", "find_email", "filter_email", "delete_email"]:
-            self.action = name
-            return self
-        elif self.action and not self.info_required:
-            self.info_required = name
-            return self
-        else:
-            raise AttributeError(f"{self.__class__.__name__} object has no attribute '{name}'")
+    @staticmethod
+    def read_email_info_required():
+        return None
 
-    def execute(self):
-        if self.action == "create_email":
-            if self.info_required:
-                print(f"Creating email with info: {self.info_required}")
-            else:
-                print("Creating email")
-        elif self.action == "read_email":
-            if self.info_required:
-                print(f"Reading email with info: {self.info_required}")
-            else:
-                print("Reading email")
-        elif self.action == "send_email":
-            if self.info_required:
-                print(f"Sending email with info: {self.info_required}")
-            else:
-                print("Sending email")
-        elif self.action == "find_email":
-            if self.info_required:
-                print(f"Finding email with info: {self.info_required}")
-            else:
-                print("Finding email")
-        elif self.action == "filter_email":
-            if self.info_required:
-                print(f"Filtering email with info: {self.info_required}")
-            else:
-                print("Filtering email")
-        elif self.action == "delete_email":
-            if self.info_required:
-                print(f"Deleting email with info: {self.info_required}")
-            else:
-                print("Deleting email")
-        else:
-            raise ValueError("Invalid action or information")
+    @staticmethod
+    def read_email(*args, **kwargs):
+        email = """Subject: Inquiry about Product Availability Dear [Recipient's Name], I hope this email finds you well. I am writing to inquire about the availability of a specific product. Could you please provide me with information regarding its current stock status and any upcoming promotions or discounts? I appreciate your prompt response and assistance in this matter.Thank you,[Your Name]"""
+        return email
+
+    @staticmethod
+    def send_email_info_required():
+        return json.dumps({"subject": "Subject of email is required", "body": "Body of email is required", "recipient_email": "Recipient email is required"})
+
+    @staticmethod
+    def send_email(*args, **kwargs):
+        print(f"Sending email with :")
+
+    @staticmethod
+    def find_email_info_required():
+        return json.dumps({"search_criteria": "Search criteria is required"})
+
+    @staticmethod
+    def find_email(*args, **kwargs):
+        print(f"Finding email with :")
+
+    @staticmethod
+    def filter_email_info_required():
+        return json.dumps({"filter_criteria": "Filter criteria is required"})
+
+    @staticmethod
+    def filter_email(*args, **kwargs):
+        print(f"Filtering email with :")
+
+    @staticmethod
+    def delete_email_info_required():
+        return json.dumps({"email_id": "ID of email to be deleted is required"})
+
+    @staticmethod
+    def delete_email(*args, **kwargs):
+        print(f"Deleting email with :")
+

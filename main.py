@@ -1,9 +1,16 @@
-from conversation import Conversation
+from spock.memory import Memory
+from spock.mind import mind
 
 def main():
-    user_input = "How are you? "
-    conversation = Conversation(user_input)
-    conversation.task_request()
+    memory = Memory()
+    while True:
+        user_input = input("User: ")
+        context = memory.get_chat_history() 
+        chad = mind(user_input, context)
+        chad_response = chad.system1()
+        memory.short_term(user_input, chad_response)
+        chad.system2()
 
 if __name__ == "__main__":
     main()
+ 

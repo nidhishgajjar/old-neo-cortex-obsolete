@@ -50,7 +50,7 @@ class OpenAIChat:
                 if 'content' in chunk:
                     # concatenate the new piece onto the full message
                     full_message += chunk['content']
-                    # print(chunk['content'], end='')
+                    print(chunk['content'], end='')
                     sys.stdout.flush()
 
         except Exception as e:

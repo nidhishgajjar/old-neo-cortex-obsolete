@@ -26,8 +26,14 @@ class Utilities:
         
     @staticmethod
     def get_current_task_details(task_pipeline, selected_tools):
+        # print(task_pipeline)
         current_task = task_pipeline[0]
         task_id = current_task["task_id"]
+
+        # Ensure selected_tools is a list
+        if isinstance(selected_tools, dict):
+            selected_tools = [selected_tools]
+
         for tool in selected_tools:
             if tool["task_id"] == task_id:
                 return {
